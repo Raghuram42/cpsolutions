@@ -1,189 +1,93 @@
+
+import java.util.*;
+import java.lang.*;
 import java.io.*;
-    import java.util.*;
-      class Codechef{
 
-        static class Reader 
+class FastReader
+{
+        BufferedReader br; 
+    StringTokenizer st; 
+
+    public FastReader() 
+    { 
+        br = new BufferedReader(new
+                 InputStreamReader(System.in)); 
+    } 
+
+    String next() 
+    { 
+        while (st == null || !st.hasMoreElements()) 
         { 
-            final private int BUFFER_SIZE = 1 << 16; 
-            private DataInputStream din; 
-            private byte[] buffer; 
-            private int bufferPointer, bytesRead; 
-
-            public Reader() 
+            try
             { 
-                din = new DataInputStream(System.in); 
-                buffer = new byte[BUFFER_SIZE]; 
-                bufferPointer = bytesRead = 0; 
+                st = new StringTokenizer(br.readLine()); 
             } 
-
-            public Reader(String file_name) throws IOException 
+            catch (IOException  e) 
             { 
-                din = new DataInputStream(new FileInputStream(file_name)); 
-                buffer = new byte[BUFFER_SIZE]; 
-                bufferPointer = bytesRead = 0; 
+                e.printStackTrace(); 
             } 
+        } 
+        return st.nextToken(); 
+    } 
 
-            public String readLine() throws IOException 
-            { 
-                 List<Byte> buf = new ArrayList<Byte>();
-            //   byte[] buf = new byte[1000]; // line length 
-              int cnt = 0, c; 
-    
-              while ((c = read()) != -1) 
-              { 
-                  if (c == '\n') 
-                      break; 
-                  buf.add((byte) c); 
-                //   buf[c] = (byte) c;
-                  cnt++;
-              } 
-            
-              byte[] buf2 = new byte[buf.size()];
-              int i = 0;
-              for(Byte b: buf)
-                 buf2[i++] = b;
+    int nextInt() 
+    { 
+        return Integer.parseInt(next()); 
+    } 
+long nextLong() 
+    { 
+        return Long.parseLong(next()); 
+    } 
 
-              return new String(buf2, 0, cnt); 
+    double nextDouble() 
+    { 
+        return Double.parseDouble(next()); 
+    } 
 
-            } 
-             
-            public int nextInt() throws IOException 
-            { 
-                int ret = 0; 
-                byte c = read(); 
-                while (c <= ' ') 
-                    c = read(); 
-                boolean neg = (c == '-'); 
-                if (neg) 
-                    c = read(); 
-                do
-                { 
-                    ret = ret * 10 + c - '0'; 
-                } while ((c = read()) >= '0' && c <= '9'); 
-
-                if (neg) 
-                    return -ret; 
-                return ret; 
-            } 
-
-            public long nextLong() throws IOException 
-            { 
-                long ret = 0; 
-                byte c = read(); 
-                while (c <= ' ') 
-                    c = read(); 
-                boolean neg = (c == '-'); 
-                if (neg) 
-                    c = read(); 
-                do { 
-                    ret = ret * 10 + c - '0'; 
-                } 
-                while ((c = read()) >= '0' && c <= '9'); 
-                if (neg) 
-                    return -ret; 
-                return ret; 
-            } 
-
-            public double nextDouble() throws IOException 
-            { 
-                double ret = 0, div = 1; 
-                byte c = read(); 
-                while (c <= ' ') 
-                    c = read(); 
-                boolean neg = (c == '-'); 
-                if (neg) 
-                    c = read(); 
-
-                do { 
-                    ret = ret * 10 + c - '0'; 
-                } 
-                while ((c = read()) >= '0' && c <= '9'); 
-
-                if (c == '.') 
-                { 
-                    while ((c = read()) >= '0' && c <= '9') 
-                    { 
-                        ret += (c - '0') / (div *= 10); 
-                    } 
-                } 
-
-                if (neg) 
-                    return -ret; 
-                return ret; 
-            } 
-
-            private void fillBuffer() throws IOException 
-            { 
-                bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE); 
-                if (bytesRead == -1) 
-                    buffer[0] = -1; 
-            } 
-
-            private byte read() throws IOException 
-            { 
-                if (bufferPointer == bytesRead) 
-                    fillBuffer(); 
-                return buffer[bufferPointer++]; 
-            } 
-
-            public void close() throws IOException 
-            { 
-                if (din == null) 
-                    return; 
-                din.close(); 
-            } 
-        }
-        static int[] dp;
-        static PrintWriter out;
-        public static void main(String[] args){
-        // Comment this code while running in Online Judge
-            // try {
-            //     // System.out.println(System.getProperty("ONLINE_JUDGE"));
-            //     if (System.getProperty("ONLINE_JUDGE") == null) {
-            //         FileOutputStream output=new FileOutputStream("output.txt");
-            //         PrintStream out=new PrintStream(output);
-            //         System.setOut(out);
-                    
-            //         InputStream input=new FileInputStream("input.txt");
-            //         System.setIn(input); 
-            //     }
-                
-            // } catch (FileNotFoundException e) {
-            //     e.printStackTrace();
-            // }
-
-            try{
-                Reader s=new Reader(); 
-               out = new PrintWriter(System.out); 
-               int t = s.nextInt();
-
-               int i = 0;
-                while(t>0){
-                    int n = s.nextInt();
-                    
-                    i = 0;
-                   int sum = 0;
-                    while(i<n){
-                        // inp[i++] =
-                        sum += s.nextInt();
-                        i++;
-                    }
-
-                    if(sum>=0)
-                    out.println("YES");
-                    else
-                    out.println("NO");
-                    t--;
-                }
-             
-             out.flush();                
-            }
-            catch(Exception e){
-            
-                System.out.println(e);
-                    return;
-                }
-            
-        }
-      
+    String nextLine() 
+    { 
+        String str = ""; 
+        try
+        { 
+            str = br.readLine(); 
+        } 
+        catch (IOException e) 
+        { 
+            e.printStackTrace(); 
+        } 
+        return str; 
+    } 
+}
+class  codechef
+{
+    public static void main(String args[])
+    { FastReader sc=new FastReader();
+    int t=sc.nextInt();
+    while(t-->0)
+    { int n=sc.nextInt();
+    int a[]=new int[n];
+    for(int i=0;i<n;i++)
+    {
+        a[i]=sc.nextInt();
     }
+     if(n == 1 && a[0] < 0)
+     System.out.println("NO");
+     else{
+         int sum1 = 0;
+         int sum2 = 0;
+         for(int i=0;i<n;i++){
+             if(a[i] <0)
+             sum1 += a[i]*-1;
+             else
+             sum2 += a[i];
+         }
+         
+         if(sum1>sum2)
+         System.out.println("NO");
+         else
+         System.out.println("YES");
+         
+     }
+	  }
+    }
+}
